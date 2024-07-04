@@ -1,0 +1,10 @@
+# Dockerfile.backend
+FROM node:18-alpine
+
+WORKDIR /app
+COPY ./backend/package.json ./backend/package-lock.json ./
+RUN npm install
+COPY ./backend ./
+COPY ./backend/.env ./
+RUN npm run build
+CMD ["node", "dist/main"]

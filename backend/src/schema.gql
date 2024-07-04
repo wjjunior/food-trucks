@@ -1,0 +1,15 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type FoodTruck {
+  id: Int!
+  name: String!
+  description: String!
+  latitude: String!
+  longitude: String!
+}
+
+type Query {
+  foodTrucks: [FoodTruck!]!
+}
