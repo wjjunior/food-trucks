@@ -4,6 +4,7 @@ import * as dotenv from 'dotenv';
 import { ConfigService } from '@nestjs/config';
 import { ApiConfig } from './api.config';
 import { INestApplication } from '@nestjs/common';
+import { Connection } from 'typeorm';
 
 dotenv.config();
 
@@ -14,7 +15,10 @@ async function bootstrap() {
 
   setupCors(app, configService);
 
-  await app.listen(3000);
+  const connection = app.get(Connection);
+  await connection.runMigrations();
+
+  await app.listen(3001);
 }
 bootstrap();
 
