@@ -1,6 +1,9 @@
 # FoodTrucks
+<img width="1268" alt="image" src="https://github.com/wjjunior/food-trucks/assets/13741072/279c24a3-c645-4dd9-bf03-a154d164f463">
 
-[![Watch the video](https://i.sstatic.net/Vp2cE.png)](https://www.loom.com/share/c4a84ae0cb6044fcb57e5b04169d6197?sid=076a11fb-8b03-468d-b539-28d811c849fa)
+> ## Demo
+
+[Watch the demo](https://www.loom.com/share/c4a84ae0cb6044fcb57e5b04169d6197?sid=076a11fb-8b03-468d-b539-28d811c849fa)
 
 > ## Resources
 
