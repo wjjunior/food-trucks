@@ -1,8 +1,10 @@
 export interface FoodTruck {
   id: number;
   name: string;
-  cuisine: string;
-  location: string;
+  description: string;
+  latitude: string;
+  longitude: string;
+  locationId: number;
 }
 
 export interface GetFoodTrucksData {
