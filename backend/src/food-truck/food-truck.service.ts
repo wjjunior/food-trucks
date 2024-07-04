@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, EntityManager, Repository } from 'typeorm';
 import fetch from 'node-fetch';
@@ -11,6 +11,7 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 @Injectable()
 export class FoodTruckService {
   private readonly sfGovFoodTruckListUrl: string;
+  private readonly logger = new Logger(FoodTruckService.name);
 
   constructor(
     @InjectRepository(FoodTruck)
@@ -22,6 +23,10 @@ export class FoodTruckService {
       'SF_GOV_FOOD_TRUCKS_LIST_URL',
     );
   }
+  async onModuleInit() {
+    this.logger.log('Starting the food truck update process...');
+    await this.updateFoodTrucks();
+  }
 
   findAll(): Promise<FoodTruck[]> {
     return this.foodTruckRepository.find();
@@ -29,7 +34,11 @@ export class FoodTruckService {
 
   @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
   async updateFoodTrucks(): Promise<void> {
+    this.logger.log('Fetching food trucks data from CSV...');
     const foodTrucks = await this.fetchCsv();
+    this.logger.log(
+      `Fetched ${foodTrucks.length} food trucks. Updating database...`,
+    );
     const locationIds = foodTrucks.map((ft) => ft.locationId);
 
     // Start a database transaction
@@ -44,6 +53,7 @@ export class FoodTruckService {
     try {
       await this.processFoodTrucks(foodTrucks, queryRunner.manager);
       await queryRunner.commitTransaction();
+      this.logger.log('Food trucks database update complete.');
     } catch (error) {
       await queryRunner.rollbackTransaction();
       throw new BadRequestException(`Error processing CSV: ${error.message}`);
