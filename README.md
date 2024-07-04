@@ -1,5 +1,7 @@
 # FoodTrucks
 
+[![Watch the video](https://i.sstatic.net/Vp2cE.png)](https://www.loom.com/share/c4a84ae0cb6044fcb57e5b04169d6197?sid=076a11fb-8b03-468d-b539-28d811c849fa)
+
 > ## Resources
 
 - Docker
