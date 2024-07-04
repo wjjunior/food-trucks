@@ -28,8 +28,26 @@ export class FoodTruckService {
     await this.updateFoodTrucks();
   }
 
-  findAll(): Promise<FoodTruck[]> {
-    return this.foodTruckRepository.find();
+  async findAll(): Promise<FoodTruck[]> {
+    const foodTruckList = await this.foodTruckRepository.find({
+      order: {
+        name: 'ASC',
+      },
+    });
+
+    const results = foodTruckList.filter((foodTruck) => {
+      const latitude = parseFloat(foodTruck.latitude);
+      const longitude = parseFloat(foodTruck.longitude);
+
+      return (
+        !isNaN(latitude) &&
+        !isNaN(longitude) &&
+        latitude !== 0 &&
+        longitude !== 0
+      );
+    });
+
+    return results;
   }
 
   @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)

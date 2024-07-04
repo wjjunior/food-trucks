@@ -7,8 +7,8 @@ export class FoodTruckResolver {
   constructor(private foodTruckService: FoodTruckService) {}
 
   @Query(() => [FoodTruck])
-  foodTrucks(): Promise<FoodTruck[]> {
-    return this.foodTruckService.findAll();
+  async foodTrucks(): Promise<FoodTruck[]> {
+    return await this.foodTruckService.findAll();
   }
 
   @Mutation(() => Boolean)
