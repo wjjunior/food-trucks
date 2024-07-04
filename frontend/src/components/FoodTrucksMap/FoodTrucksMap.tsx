@@ -15,7 +15,15 @@ type FoodTrucksMapProps = {
 
 const FoodTrucksMap: React.FC<FoodTrucksMapProps> = ({ currentData }) => {
   return (
-    <Box sx={{ height: 600 }} data-testid="map-container">
+    <Box
+      sx={{
+        height: {
+          xs: 300,
+          md: 600,
+        },
+      }}
+      data-testid="map-container"
+    >
       <StyledMapContainer
         center={defaultCenter}
         zoom={13}

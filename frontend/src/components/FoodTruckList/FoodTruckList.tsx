@@ -2,6 +2,7 @@ import React from "react";
 import { DataGrid, GridColDef, GridPaginationModel } from "@mui/x-data-grid";
 import { StyledDataGridContainer } from "./FoodTruckList.styles";
 import { FoodTruck } from "../../types/FoodTruck";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 type FoodTrucksListProps = {
   rows: FoodTruck[];
@@ -14,9 +15,14 @@ const FoodTrucksList: React.FC<FoodTrucksListProps> = ({
   paginationModel,
   setPaginationModel,
 }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   const columns: GridColDef[] = [
     { field: "name", headerName: "Name", width: 200 },
-    { field: "description", headerName: "Description", width: 300 },
+    ...(!isMobile
+      ? [{ field: "description", headerName: "Description", width: 300 }]
+      : []),
   ];
 
   return (
