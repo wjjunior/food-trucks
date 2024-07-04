@@ -1,6 +1,6 @@
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { DataSource, DataSourceOptions } from 'typeorm';
+import { DataSourceOptions } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 import { DatabaseConfig } from './database.config';
@@ -30,7 +30,3 @@ export function createDataSourceOptions(): DataSourceOptions &
         : { ca: process.env.DB_SSL_CERT },
   };
 }
-
-const dataSourceOptions = createDataSourceOptions();
-
-export const AppDataSource = new DataSource(dataSourceOptions);

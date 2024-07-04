@@ -4,6 +4,7 @@
 
 type FoodTruck {
   id: Int!
+  locationId: Int!
   name: String!
   description: String!
   latitude: String!
@@ -12,4 +13,8 @@ type FoodTruck {
 
 type Query {
   foodTrucks: [FoodTruck!]!
+}
+
+type Mutation {
+  updateFoodTrucks: Boolean!
 }

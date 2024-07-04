@@ -11,7 +11,7 @@ export class CreateFoodTruckTable1720057001286 implements MigrationInterface {
         "description" character varying NOT NULL, 
         "latitude" character varying NOT NULL, 
         "longitude" character varying NOT NULL, 
-        "locationId" integer NOT NULL, 
+        "location_id" integer NOT NULL, 
         CONSTRAINT "PK_8917af8771e61204840bcf45917" PRIMARY KEY ("id")
       )`,
     );
