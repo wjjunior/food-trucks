@@ -1,10 +1,10 @@
 import "./App.css";
-import FoodTruckList from "./components/FoodTruckList/FoodTruckList";
+import FoodTrucksPage from "./pages/FoodTrucksPage";
 
 function App() {
   return (
     <div className="App">
-      <FoodTruckList />
+      <FoodTrucksPage />
     </div>
   );
 }
